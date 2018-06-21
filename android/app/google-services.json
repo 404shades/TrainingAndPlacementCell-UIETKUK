@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "81777187600",
+    "firebase_url": "https://trainingplacementapp.firebaseio.com",
+    "project_id": "trainingplacementapp",
+    "storage_bucket": "trainingplacementapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81777187600:android:ed9e5b8ec5d51b52",
+        "android_client_info": {
+          "package_name": "com.example.trainingplacement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81777187600-c3a6jm8bsbb328bo0020lkuccarufhmd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trainingplacement",
+            "certificate_hash": "73b69905119115383597e1d8ef2685bf7213f9cb"
+          }
+        },
+        {
+          "client_id": "81777187600-ogbhfmak7ssgg91s5a2aetuembb12u34.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "81777187600-ogbhfmak7ssgg91s5a2aetuembb12u34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkvZm_vPqO3hDKWHVp6XFVwDMpyD_zKUc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81777187600-ogbhfmak7ssgg91s5a2aetuembb12u34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
