@@ -3,8 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:training_placement/FIrstPage.dart';
 import 'package:training_placement/FillDataUser.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:training_placement/Splash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main(){
   runApp(new MyApp());
@@ -17,7 +20,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue
       ),
       title: "Training and Placement App",
-      home: new HomeApp(),
+      home: new SplashScreen(),
+      routes: <String,WidgetBuilder>{
+        '/loginScreen':(BuildContext context)=>new HomeApp(),
+        '/firstScreen':(BuildContext context)=> new HomePageApp(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }
@@ -44,6 +51,9 @@ Future<FirebaseUser> _signIn() async{
     idToken: authentication.idToken,
     accessToken: authentication.accessToken
   );
+  final SharedPreferences _prefs = await SharedPreferences.getInstance();
+  _prefs.setString("user_email", user.email);
+
   print("USer Name ${user.displayName}");
   print(user.photoUrl);
   return user;
@@ -95,9 +105,12 @@ void _toggleSubmitState(){
                   _toggleSubmitState(); 
                   print(_checkUserEmailPresent);
                   if(!_checkUserEmailPresent){
-                  await Navigator.push(context, new MaterialPageRoute(
+                   Navigator.push(context, new MaterialPageRoute(
                     builder: (context)=> new UserDetails(user: user)
                   ));
+                  }
+                  else{
+                  Navigator.of(context).pushReplacementNamed("/firstScreen");
                   }
                 }).catchError((e)=> print(e));},
                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),

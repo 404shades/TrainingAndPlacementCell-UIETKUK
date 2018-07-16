@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:training_placement/FIrstPage.dart';
 import 'package:training_placement/Users.dart';
 
 class UserDetails extends StatefulWidget {
   final FirebaseUser user;
-  final String documentName;
 
   UserDetails({Key key, @required this.user}) : super(key:key);
   @override
@@ -55,6 +55,7 @@ class _UserDetailsState extends State<UserDetails> {
         });
         flag_added=true;
         _toggleState();
+        Navigator.of(context).pushReplacementNamed('/firstScreen');
     });
     }
   }
