@@ -163,7 +163,8 @@ class _UserDetailsState extends State<UserDetails> {
                       ,new RaisedButton(
                         child: new Text("Submit The Data",style: new TextStyle(color: Colors.white),),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(32.0)),
-                        color: Colors.blue,
+                        color: Colors.black,
+                        
                         onPressed: (){ 
                           _toggleState();
                           _submit();}
@@ -177,7 +178,7 @@ class _UserDetailsState extends State<UserDetails> {
           new Container(
             padding: const EdgeInsets.all(24.0),
             child: new Text(
-              "*Note You can Update your details in Profile Section",
+              "*Note You can't Update your details afterwards. Please confirm before clicking Submit",
               style: new TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),
             ),
           )

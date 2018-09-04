@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:training_placement/Gradients.dart';
 import 'package:training_placement/UIETStack.dart';
 class TwoPanels extends StatefulWidget {
 
@@ -31,7 +32,9 @@ class _TwoPanelsState extends State<TwoPanels> {
       child: new Stack(
         children: <Widget>[
           new Container(
-            color: theme.primaryColor,
+            decoration: BoxDecoration(
+              gradient: bluePinkGradient
+            ),
             child: new Center(
               child:   new Text("Back Panel",
               style: new TextStyle(fontSize: 24.0,color: Colors.white),

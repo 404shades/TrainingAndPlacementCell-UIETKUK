@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:training_placement/FIrstPage.dart';
 import 'package:training_placement/FillDataUser.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:training_placement/Gradients.dart';
 import 'package:training_placement/Splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -117,11 +118,37 @@ void _toggleSubmitState(){
                 color: Colors.lightBlue
               ),
               new Padding(padding: const EdgeInsets.only(top: 24.0)),
-              new RaisedButton(
-                child: new Text("Sign Out", style: new TextStyle(color: Colors.white),),
-                onPressed: ()=> _signout(),
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                color: Colors.purple,
+              new MaterialButton(
+                onPressed: ()=>_signout,
+                child: new ClipRRect(
+                  borderRadius: BorderRadius.all(new Radius.circular(50.0)),
+                  child: new Container(
+                    decoration: new BoxDecoration(
+                      gradient: pinkRedGradient,
+                      boxShadow: <BoxShadow>[
+                        new BoxShadow(
+                          blurRadius: 14.0,
+                          color:Colors.black26,
+                          offset: new Offset(0.0, 10.0)
+                        )
+                      ]
+                    ),
+                    height: 45.0,
+                    child: new Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: new Center(
+                        child: new Text(
+                          "SignOut",
+                          style: new TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w600
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               )
             ],
           ),
