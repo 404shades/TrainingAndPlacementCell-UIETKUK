@@ -153,7 +153,7 @@ class Notices extends StatelessWidget {
     return StreamBuilder(
       stream: Firestore.instance.collection("Notifications").orderBy("timestamp",descending: true).snapshots(),
       builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot){
-        if(!snapshot.hasData) return new Text("Loading");
+        if(!snapshot.hasData) return new Center(child: new CircularProgressIndicator(backgroundColor: Colors.black,),);
         return new ListView(
           padding: const EdgeInsets.all(12.0),
           

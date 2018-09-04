@@ -15,7 +15,9 @@ class HomePageApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.lightBlue,
         brightness: Brightness.light,
-        primaryColorDark: Colors.black
+        primaryColorDark: Colors.black,
+        accentColor: Colors.black,
+        
       ),
       home: new BackDropApp(),
       routes: <String,WidgetBuilder>{
