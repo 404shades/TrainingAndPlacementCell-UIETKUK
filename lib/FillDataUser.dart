@@ -13,11 +13,11 @@ class UserDetails extends StatefulWidget {
 }
 
 class _UserDetailsState extends State<UserDetails> {
-  int _rollNumber;
-  double _class10marks;
-  int _class10rollNumber;
-  double _class12marks;
-  int _class12rollNumber;
+  String _rollNumber;
+  String _class10marks;
+  String _class10rollNumber;
+  String _class12marks;
+  String _class12rollNumber;
   String _dateOfBirth;
   String _phoneNumber;
   bool flag_added = false;
@@ -97,6 +97,8 @@ class _UserDetailsState extends State<UserDetails> {
               child: new Container(
                 padding: const EdgeInsets.all(18.0),
                 child: new Form(
+                  autovalidate: true,
+                  
                   key: formKey,
                   child: new Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -107,7 +109,7 @@ class _UserDetailsState extends State<UserDetails> {
                         ),
                         keyboardType: TextInputType.number,
                         validator: (val)=>val.trim().isEmpty?"Please Input Some Values":null,
-                        onSaved: (val)=>_rollNumber=int.parse(val),
+                        onSaved: (val)=>_rollNumber=val,
                       ),
                       new TextFormField(
                         decoration: new InputDecoration(
@@ -115,7 +117,7 @@ class _UserDetailsState extends State<UserDetails> {
                         ),
                         keyboardType: TextInputType.number,
                         validator: (val)=>val.trim().isEmpty?"Please Input Some Values":null,
-                        onSaved: (val)=>_class10rollNumber=int.parse(val),
+                        onSaved: (val)=>_class10rollNumber=val,
                       ),
                       new TextFormField(
                         decoration: new InputDecoration(
@@ -123,7 +125,7 @@ class _UserDetailsState extends State<UserDetails> {
                         ),
                         keyboardType: TextInputType.number,
                         validator: (val)=>val.trim().isEmpty?"Please Input Some Values":null,
-                        onSaved: (val)=>_class10marks=double.parse(val),
+                        onSaved: (val)=>_class10marks=val,
                       ),
                       new TextFormField(
                         decoration: new InputDecoration(
@@ -131,7 +133,7 @@ class _UserDetailsState extends State<UserDetails> {
                         ),
                         keyboardType: TextInputType.number,
                         validator: (val)=>val.trim().isEmpty?"Please Input Some Values":null,
-                        onSaved: (val)=>_class12rollNumber=int.parse(val),
+                        onSaved: (val)=>_class12rollNumber=val,
                       ),
                       new TextFormField(
                         decoration: new InputDecoration(
@@ -139,7 +141,7 @@ class _UserDetailsState extends State<UserDetails> {
                         ),
                         keyboardType: TextInputType.number,
                         validator: (val)=>val.trim().isEmpty?"Please Input Some Values":null,
-                        onSaved: (val)=>_class12marks=double.parse(val),
+                        onSaved: (val)=>_class12marks=val,
                       ),
                       new TextFormField(
                         decoration: new InputDecoration(

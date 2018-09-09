@@ -61,7 +61,7 @@ class _TrainingFormState extends State<TrainingForm> {
     await Firestore.instance.collection("TrainingForms").where('email',isEqualTo: user.email.toString())
     .getDocuments().then((_documentsQuery){
       
-        if(_documentsQuery.documents.length==1){
+        if(_documentsQuery.documents.length>=1){
           print("miioiioi");
           _userAlreadyRegistered = true;
         }
@@ -125,9 +125,33 @@ class _TrainingFormState extends State<TrainingForm> {
         "dateOfJoining":userData.doj
       });
       
+      
    });
-
  }
+  void showLoadingDialog(BuildContext context){
+     showDialog(
+       barrierDismissible: false,
+       context: context,
+       builder: (BuildContext context){
+         return AlertDialog(
+           title: Text("Submitting......."),
+           content: new Container(
+             child: Column(
+               children: <Widget>[
+                 new CircularProgressIndicator(backgroundColor: Colors.black,),
+                 new SizedBox(
+                   height: 25.0,
+                 ),
+                 new Text("Your filled form will be mailed to you at ${user.email}"),
+                 new SizedBox(height: 10.0),
+                 new Text("Note* Please dont hit back while the form is saving")
+               ],
+             ),
+           )
+         );
+       }
+     );
+   }
   void showMessage(String message){
     scaffoldKey.currentState.showSnackBar(
       new SnackBar(backgroundColor: Colors.black,
@@ -136,6 +160,7 @@ class _TrainingFormState extends State<TrainingForm> {
   }
   void _showDialog(BuildContext context,FormState form){
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (BuildContext context){
         return AlertDialog(
@@ -147,7 +172,9 @@ class _TrainingFormState extends State<TrainingForm> {
               child: new Text("Save"),
               onPressed:(){
                 Navigator.of(context).pop();
+                
                 _performBackendServerSave(form);
+                Navigator.of(context).pop();
               form.reset();
               
               },

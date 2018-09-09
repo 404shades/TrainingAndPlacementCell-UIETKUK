@@ -7,12 +7,25 @@ class WebView extends StatefulWidget {
 }
 
 class _WebViewState extends State<WebView> {
+  
+
+  @override
+  void initState(){
+    super.initState();
+    FlutterWebviewPlugin flutterWebviewPlugin = new FlutterWebviewPlugin();
+    flutterWebviewPlugin.onUrlChanged.listen((String url){
+      print("kokoki $url");
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    
     return WebviewScaffold(
+
       appBar: AppBar(
         title: Text("ERP Panel",style: TextStyle(color:Colors.white,fontFamily: 'Poppins',fontWeight: FontWeight.w800),),
         backgroundColor: Colors.black,
+
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.white),
       ),
@@ -20,6 +33,8 @@ class _WebViewState extends State<WebView> {
       withZoom: true,
       withJavascript: true,
       withLocalStorage: true,
+      withLocalUrl: true,
+      
 
     );
   }

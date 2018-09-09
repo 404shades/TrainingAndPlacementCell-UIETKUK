@@ -14,6 +14,9 @@ class _NoticeWidgetState extends State<NoticeWidget> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+
+      
+      
       backgroundColor: Colors.white,
       floatingActionButton: new FloatingActionButton(
         backgroundColor: Colors.black,
@@ -79,9 +82,9 @@ class Notices extends StatelessWidget {
                   child: new Text(title,
                   style: new TextStyle(
                     fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
+                   
                     fontSize: 20.0
-                  ),),
+                  ),textAlign: TextAlign.justify,),
                 )
               ),
               
@@ -164,7 +167,7 @@ class Notices extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   
-                  new Padding(padding:const EdgeInsets.only(top:14.00)),
+                  new Padding(padding:const EdgeInsets.only(top:18.00)),
                 
                   new Container(
                   
@@ -194,7 +197,9 @@ class Notices extends StatelessWidget {
                   color: Colors.white,
                   fontFamily: 'Poppins'
                   
-                )),
+                ),
+                textAlign: TextAlign.justify,
+                ),
                 subtitle: new Text(_isAttachmentAvailable(document),style: new TextStyle(
                   color: Colors.white,
                   decoration: TextDecoration.underline,

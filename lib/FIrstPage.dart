@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:training_placement/ContactUs.dart';
 import 'package:training_placement/Cookies.dart';
 import 'package:training_placement/Gradients.dart';
 import 'package:training_placement/NoticePanel.dart';
+import 'package:training_placement/RecruitersPage.dart';
 import 'package:training_placement/TrainingPlacementForm.dart';
 import 'package:training_placement/WebView.dart';
 import 'package:training_placement/twopanels.dart';
@@ -136,7 +141,7 @@ class _BackDropAppState extends State<BackDropApp> {
                 children: <Widget>[
                   new ListTile(
                     leading: new CircleAvatar(
-                      backgroundImage: new NetworkImage("http://www.kuk.ac.in/userfiles/image/Prof_%20K_C_%20Sharma%20KU%20Vice-Chancellor%20Photo.JPG"),
+                      backgroundImage: AssetImage("assets/dir.jpeg"),
                       radius: 34.0,
                       
                     ),
@@ -165,7 +170,7 @@ class _BackDropAppState extends State<BackDropApp> {
                 children: <Widget>[
                   new ListTile(
                     leading: new CircleAvatar(
-                      backgroundImage: new NetworkImage("http://www.kuk.ac.in/userfiles/image/Prof_%20K_C_%20Sharma%20KU%20Vice-Chancellor%20Photo.JPG"),
+                      backgroundImage: AssetImage("assets/vcku.jpeg"),
                       radius: 34.0,
                       
                     ),
@@ -184,15 +189,44 @@ class _BackDropAppState extends State<BackDropApp> {
               ),
             ),
           ),
-          
+          new SizedBox(
+            height: 10.0,
+          )
         ],
       ),
     );
   }
 
+  Future<bool> _onBackPressed(){
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context){
+        return new AlertDialog(
+          
+          title: new Text("Do You really want to exit the app?",style: TextStyle(fontFamily: "Poppins"),),
+          actions: <Widget>[
+            new FlatButton(
+              onPressed: ()=>Navigator.pop(context,true),
+              child: new Text("Yes",style: TextStyle(color: Colors.blue,fontSize: 19.0),),
+              
+            ),
+            new FlatButton(
+              onPressed: ()=>Navigator.pop(context,false),
+              child: new Text("No",style: TextStyle(color: Colors.blue,fontSize: 19.0),),
+              
+            )
+          ],
+        );
+      }
+    );
+  }
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: new Scaffold(
+
 
       drawer: new Drawer(
         child: new ListView(
@@ -211,30 +245,58 @@ class _BackDropAppState extends State<BackDropApp> {
             new Divider(),
             new ListTile(
               title: Text("Home"),
-              trailing: new Icon(Icons.forward),
+              trailing: new Icon(Icons.home,color: Colors.black,),
+              
             ),
             new ListTile(
               title: Text("ERP Panel"),
               trailing: new Icon(
-                Icons.report
+                Icons.laptop_mac,
+                color: Colors.black,
               ),
               onTap: _erpPanel,
             ),
             new ListTile(
               title: Text("My Account"),
+              trailing: Icon(Icons.supervisor_account,color: Colors.black,),
             ),
             new ListTile(
               title: Text("Training and Placement Form"),
               onTap: ()=>Navigator.push(context,new MaterialPageRoute(
                 builder: (context)=>new TrainingForm(user: user,)
               )),
+              trailing: Icon(Icons.redeem,color: Colors.black,),
             ),
             new ListTile(
               title: Text("Contact Us"),
+              onTap: ()=>Navigator.push(context, new MaterialPageRoute(
+                builder: (context)=>new OurTeam()
+              )),
+              trailing: Icon(Icons.contact_mail,color: Colors.black,),
+              
+            ),
+            new ListTile(
+              title: Text("Placement records"),
+              onTap: ()=>Navigator.push(context, new MaterialPageRoute(
+                builder: (context)=>new RecruitersWidget()
+              )),
+              trailing: Icon(Icons.record_voice_over,color: Colors.black,),
+            ),
+            new ListTile(
+              title: new Row(
+                children: <Widget>[
+                  new Icon(Icons.copyright,size: 16.0,),
+                  new Text(" UIET Kurukshetra"),
+                  
+                ],
+              ),
+              subtitle: Text("  A 404Shades Product"),
               
             )
           ],
+          
         ),
+
         elevation: 14.0,
         semanticLabel: "Rohan",
       ),
@@ -259,6 +321,7 @@ class _BackDropAppState extends State<BackDropApp> {
 
         ],
       ),
+    ),
     );
   }
 }

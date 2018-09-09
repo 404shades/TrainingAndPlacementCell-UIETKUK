@@ -15,6 +15,7 @@ dependencies:
   shared_preferences: 
   flutter_webview_plugin:
   url_launcher:
+  firebase_messaging:
 
 dev_dependencies:
   flutter_test:
@@ -34,6 +35,10 @@ flutter:
   assets:
    - assets/uiet_pic.jpg
    - assets/Kurukshetra_University_logo.png
+   - assets/dir.jpeg
+   - assets/vcku.jpeg
+   - assets/avat.png
+
 
 
   # To add assets to your application, add an assets section, like this:
