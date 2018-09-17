@@ -16,6 +16,7 @@ dependencies:
   flutter_webview_plugin:
   url_launcher:
   firebase_messaging:
+  firebase_remote_config:
 
 dev_dependencies:
   flutter_test:

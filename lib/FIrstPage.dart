@@ -10,6 +10,7 @@ import 'package:training_placement/NoticePanel.dart';
 import 'package:training_placement/RecruitersPage.dart';
 import 'package:training_placement/TrainingPlacementForm.dart';
 import 'package:training_placement/WebView.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:training_placement/twopanels.dart';
 
 class HomePageApp extends StatelessWidget {
@@ -41,9 +42,12 @@ class BackDropApp extends StatefulWidget {
 class _BackDropAppState extends State<BackDropApp> {
 
    FirebaseUser user;
+   RemoteConfig remoteConfig;
    var email = "null";
    var displayName = "null";
-   var displayPicture = "https://www.google.com/";
+   var displayPicture = "https://www.google.com/";  
+   bool enablingForm = false;
+   
 
 
       void _notifications(){
@@ -66,8 +70,36 @@ class _BackDropAppState extends State<BackDropApp> {
       void initState(){
         super.initState();
         _getUser();
+        setUpRemoteConfig();
       }
-    
+      
+    Future<void> setUpRemoteConfig() async{
+      remoteConfig =await RemoteConfig.instance;
+      await remoteConfig.setConfigSettings(new RemoteConfigSettings(debugMode: true));
+      await remoteConfig.setDefaults(<String,dynamic>{
+        'enablingForm':false
+      });
+      try{
+      await remoteConfig.fetch(expiration: const Duration(seconds: 0));
+      await remoteConfig.activateFetched().then((value){
+        print("Pokemon $value");
+        print("PokemonNew ${remoteConfig.getBool("enablingForm")}");
+        setState(() {
+                  enablingForm = remoteConfig.getBool('enablingForm');
+                });
+       
+        
+      });
+
+      
+      print("LOOLLL${remoteConfig.getBool('enablingForm')}");
+      
+      }on FetchThrottledException catch(exception){
+        print(exception);
+      }
+
+    }
+
     
       
     
@@ -260,13 +292,15 @@ class _BackDropAppState extends State<BackDropApp> {
               title: Text("My Account"),
               trailing: Icon(Icons.supervisor_account,color: Colors.black,),
             ),
+            enablingForm?
             new ListTile(
               title: Text("Training and Placement Form"),
               onTap: ()=>Navigator.push(context,new MaterialPageRoute(
                 builder: (context)=>new TrainingForm(user: user,)
               )),
               trailing: Icon(Icons.redeem,color: Colors.black,),
-            ),
+              enabled: enablingForm,
+            ):new SizedBox(height: 0.0,),
             new ListTile(
               title: Text("Contact Us"),
               onTap: ()=>Navigator.push(context, new MaterialPageRoute(

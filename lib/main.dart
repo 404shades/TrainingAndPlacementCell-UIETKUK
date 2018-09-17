@@ -11,6 +11,7 @@ import 'package:training_placement/Splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+
 void main(){
   runApp(new MyApp());
 }
@@ -40,6 +41,7 @@ class _HomeAppState extends State<HomeApp> {
 
 
 FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
+
 
 
 final FirebaseAuth auth = FirebaseAuth.instance;
