@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'package:training_placement/ModifyTrainingForm.dart';
 import 'TrainingFormData.dart';
 
 
@@ -24,6 +25,7 @@ class _TrainingFormState extends State<TrainingForm> {
   String _semseterValue='';
   String _trainingType = '';
   _TrainingFormState(this.user);
+  QuerySnapshot documents_to_send;
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   final formKey = new GlobalKey<FormState>();
   List<String> _values = <String>['','1st Semester','2nd Semester','3rd Semester','4th Semester','5th Semester','6th Semester','7th Semester','8th Semester'];
@@ -60,7 +62,7 @@ class _TrainingFormState extends State<TrainingForm> {
     bool _userAlreadyRegistered=false;
     await Firestore.instance.collection("TrainingForms").where('email',isEqualTo: user.email.toString())
     .getDocuments().then((_documentsQuery){
-      
+          documents_to_send = _documentsQuery;
         if(_documentsQuery.documents.length>=1){
           print("miioiioi");
           _userAlreadyRegistered = true;
@@ -128,6 +130,11 @@ class _TrainingFormState extends State<TrainingForm> {
       
    });
  }
+ DateTime expiryDate(){
+   var today = new DateTime.now();
+   var expiry = today.add(Duration(days: 55));
+   return expiry;
+ }
   void showLoadingDialog(BuildContext context){
      showDialog(
        barrierDismissible: false,
@@ -192,12 +199,14 @@ class _TrainingFormState extends State<TrainingForm> {
   }
   Widget showAddedDialog(BuildContext context){
         return AlertDialog(
-          title: new Text("Sorry, ${user.displayName.split(" ")[0]} You have already filled the Training Form"),
-          content: new Text("You Cant Fill the Form again. In case you want to modify any details of yours, drop a mail at tpo@uietkuk.in"),
+          title: new Text("Hi, ${user.displayName.split(" ")[0]} You have already filled the Training Form once"),
+          content: new Text("Now You can only update your Training Form upto ${expiryDate().toString().split(":")[0].split(" ")[0]}. You will receive your confirmed Training Letter form on ${user.email} after ${expiryDate().toString().split(" ")[0]}"),
           actions: <Widget>[
              new FlatButton(
-              onPressed: ()=>null,
-              child: new Text("Contact Us",style: new TextStyle(color: Colors.blueAccent),),
+              onPressed: ()=>Navigator.push(context, new MaterialPageRoute(
+                builder: (context)=>new ModifyTnpForm(document_query:documents_to_send)
+              )),
+              child: new Text("Modify Details",style: new TextStyle(color: Colors.blueAccent),),
             ),
             new FlatButton(
               onPressed: ()=>null,

@@ -82,7 +82,7 @@ class Notices extends StatelessWidget {
                   child: new Text(title,
                   style: new TextStyle(
                     fontWeight: FontWeight.bold,
-                   
+                    
                     fontSize: 20.0
                   ),textAlign: TextAlign.justify,),
                 )

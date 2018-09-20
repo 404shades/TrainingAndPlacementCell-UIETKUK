@@ -17,9 +17,12 @@ class HomePageApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      
+      showSemanticsDebugger: false,
+      title: "UIET KUK",
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
-        primarySwatch: Colors.lightBlue,
+        primarySwatch: Colors.deepPurple,
         brightness: Brightness.light,
         primaryColorDark: Colors.black,
         accentColor: Colors.black,
@@ -271,6 +274,7 @@ class _BackDropAppState extends State<BackDropApp> {
               decoration: BoxDecoration(
                  color: Colors.black
               ),
+              
               
                         
             ),
