@@ -59,7 +59,7 @@ class _OurTeamState extends State<OurTeam> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
-                                new CircleAvatar(backgroundColor: Colors.black,
+                                new CircleAvatar(backgroundImage: AssetImage("assets/sa.jpg"),
                                 maxRadius: 54.0,
                                 ),
                                 new SizedBox(height: 16.0,),

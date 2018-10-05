@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,6 +12,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseUser user;
 
   @override
     void initState() {
@@ -20,6 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
     }
     _naviagateToNew() async{
+      
+      user = await auth.currentUser();
+      if(user==null){
+        Navigator.of(context).pushReplacementNamed('/loginScreen');
+        return;
+      }
       bool _check = await _checkForAlreadyRegistered();
       if(_check==true){
         Navigator.of(context).pushReplacementNamed('/firstScreen');

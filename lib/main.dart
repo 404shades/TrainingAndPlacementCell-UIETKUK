@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/loginScreen':(BuildContext context)=>new HomeApp(),
         '/firstScreen':(BuildContext context)=> new HomePageApp(),
       },
+
       debugShowCheckedModeBanner: false,
     );
   }
@@ -146,7 +147,7 @@ void _toggleSubmitState(){
                   _toggleSubmitState(); 
                   print(_checkUserEmailPresent);
                   if(!_checkUserEmailPresent){
-                   Navigator.push(context, new MaterialPageRoute(
+                   Navigator.pushReplacement(context, new MaterialPageRoute(
                     builder: (context)=> new UserDetails(user: user)
                   ));
                   }

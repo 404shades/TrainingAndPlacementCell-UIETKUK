@@ -116,7 +116,7 @@ class _TrainingFormState extends State<TrainingForm> {
  void _performBackendServerSave(FormState form){
    form.save();
    Firestore.instance.runTransaction((Transaction transaction) async{
-      CollectionReference collectionReference = Firestore.instance.collection("TrainingForms");
+      CollectionReference collectionReference =  Firestore.instance.collection("TrainingForms");
       await collectionReference.add({
         "email":user.email.toString(),
         "rollNumber":userData.rollNumber,
@@ -178,10 +178,12 @@ class _TrainingFormState extends State<TrainingForm> {
             new FlatButton(
               child: new Text("Save"),
               onPressed:(){
-                Navigator.of(context).pop();
+                
                 
                 _performBackendServerSave(form);
                 Navigator.of(context).pop();
+                Navigator.of(context).pop();
+               
               form.reset();
               
               },

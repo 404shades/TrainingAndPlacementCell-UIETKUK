@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:training_placement/ContactUs.dart';
 import 'package:training_placement/Cookies.dart';
+import 'package:training_placement/GalleryPanel.dart';
 import 'package:training_placement/Gradients.dart';
 import 'package:training_placement/NoticePanel.dart';
 import 'package:training_placement/RecruitersPage.dart';
@@ -224,6 +225,34 @@ class _BackDropAppState extends State<BackDropApp> {
               ),
             ),
           ),
+          new Container(
+            padding: const EdgeInsets.all(14.0),
+            child: new Card(
+              shape: new RoundedRectangleBorder(borderRadius: BorderRadius.circular(14.0)),
+              elevation: 19.0,
+              child: new Column(
+                children: <Widget>[
+                  new ListTile(
+                    leading: new CircleAvatar(
+                      backgroundImage: AssetImage("assets/sa.jpg"),
+                      radius: 34.0,
+                      
+                    ),
+                    contentPadding: EdgeInsets.all(10.0),
+                    title: new Text("Mr. Nikhil Marriwala"),
+                    subtitle: new Text("Training and Placement Incharge"),
+                  ),
+                  new Container(
+                    padding: const EdgeInsets.all(14.0),
+                    child: new Text(
+                      "It gives me immense pleasure to know that our University Institute of Engineering & Technology (UIET) is bringing out the placement brochure for the engineering graduates completing their course studies in 2011. It is a matter of pride to know that teachers and students of UIET have strived hard to establish healthy traditions of dedicated work and perfect training towards achieving high standards. Over the years , since its inception the institute has grown with excellent infrastructure for teaching of programmes in different engineering disciplines.",
+                      textAlign: TextAlign.justify,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
           new SizedBox(
             height: 10.0,
           )
@@ -293,8 +322,11 @@ class _BackDropAppState extends State<BackDropApp> {
               onTap: _erpPanel,
             ),
             new ListTile(
-              title: Text("My Account"),
-              trailing: Icon(Icons.supervisor_account,color: Colors.black,),
+              title: Text("Gallery"),
+              trailing: Icon(Icons.picture_in_picture,color: Colors.black,),
+              onTap: ()=>Navigator.push(context,new MaterialPageRoute(
+                builder: (context)=>new GalleryPanel()
+              )),
             ),
             enablingForm?
             new ListTile(
