@@ -41,7 +41,6 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-   - assets/uiet_pic.jpg
    - assets/Kurukshetra_University_logo.png
    - assets/dir.jpeg
    - assets/vcku.jpeg
