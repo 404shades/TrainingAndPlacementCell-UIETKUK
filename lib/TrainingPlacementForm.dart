@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'package:training_placement/FilledFormHtml.dart';
 import 'package:training_placement/ModifyTrainingForm.dart';
 import 'TrainingFormData.dart';
 
@@ -211,8 +212,10 @@ class _TrainingFormState extends State<TrainingForm> {
               child: new Text("Modify Details",style: new TextStyle(color: Colors.blueAccent),),
             ),
             new FlatButton(
-              onPressed: ()=>null,
-              child: new Text("Go Back",style: new TextStyle(color: Colors.blueAccent),),
+              onPressed: ()=> Navigator.push(context, new MaterialPageRoute(
+                builder: (context)=>new FilledForm(user: user) 
+              )),
+              child: new Text("Download",style: new TextStyle(color: Colors.blueAccent),),
             )
           ],
         );

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:training_placement/ContactUs.dart';
 import 'package:training_placement/Cookies.dart';
+import 'package:training_placement/FilledFormHtml.dart';
 import 'package:training_placement/GalleryPanel.dart';
 import 'package:training_placement/Gradients.dart';
 import 'package:training_placement/NoticePanel.dart';
@@ -12,6 +13,7 @@ import 'package:training_placement/RecruitersPage.dart';
 import 'package:training_placement/TrainingPlacementForm.dart';
 import 'package:training_placement/WebView.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:training_placement/downloads.dart';
 import 'package:training_placement/twopanels.dart';
 
 class HomePageApp extends StatelessWidget {
@@ -179,6 +181,7 @@ class _BackDropAppState extends State<BackDropApp> {
                     leading: new CircleAvatar(
                       backgroundImage: AssetImage("assets/dir.jpeg"),
                       radius: 34.0,
+                      backgroundColor: Colors.white,
                       
                     ),
                     contentPadding: EdgeInsets.all(10.0),
@@ -208,6 +211,7 @@ class _BackDropAppState extends State<BackDropApp> {
                     leading: new CircleAvatar(
                       backgroundImage: AssetImage("assets/vcku.jpeg"),
                       radius: 34.0,
+                      backgroundColor: Colors.white,
                       
                     ),
                     contentPadding: EdgeInsets.all(10.0),
@@ -234,12 +238,18 @@ class _BackDropAppState extends State<BackDropApp> {
                 children: <Widget>[
                   new ListTile(
                     leading: new CircleAvatar(
-                      backgroundImage: AssetImage("assets/sa.jpg"),
+                      backgroundImage: AssetImage("assets/nm.jpg"),
                       radius: 34.0,
+                      backgroundColor: Colors.white,
                       
                     ),
+                    trailing: new CircleAvatar(
+                      backgroundImage: AssetImage("assets/sa.jpg"),
+                      radius: 34.0,
+                      backgroundColor: Colors.white,
+                    ),
                     contentPadding: EdgeInsets.all(10.0),
-                    title: new Text("Mr. Nikhil Marriwala"),
+                    title: new Text("Mr. Nikhil Marriwala and Dr. Sanjeev Ahuja"),
                     subtitle: new Text("Training and Placement Incharge"),
                   ),
                   new Container(
@@ -297,22 +307,23 @@ class _BackDropAppState extends State<BackDropApp> {
           children: <Widget>[
             new UserAccountsDrawerHeader(
 
-              accountName: Text(displayName,style: TextStyle(color: Colors.white,fontFamily: 'Poppins',fontWeight: FontWeight.w700),),
-              accountEmail: Text(email,style: TextStyle(color: Colors.white,fontFamily: 'Poppins',fontWeight: FontWeight.w500),),
+              accountName: Text(displayName,style: TextStyle(color: Colors.black,fontFamily: 'Poppins',fontWeight: FontWeight.w700),),
+              accountEmail: Text(email,style: TextStyle(color: Colors.black,fontFamily: 'Poppins',fontWeight: FontWeight.w500),),
               currentAccountPicture: new CircleAvatar(backgroundImage: NetworkImage(displayPicture),),
               decoration: BoxDecoration(
-                 color: Colors.black
+                 color: Colors.white,
+
               ),
               
               
                         
             ),
             new Divider(),
-            new ListTile(
-              title: Text("Home"),
-              trailing: new Icon(Icons.home,color: Colors.black,),
+            // new ListTile(
+            //   title: Text("Home"),
+            //   trailing: new Icon(Icons.home,color: Colors.black,),
               
-            ),
+            // ),
             new ListTile(
               title: Text("ERP Panel"),
               trailing: new Icon(
@@ -338,6 +349,13 @@ class _BackDropAppState extends State<BackDropApp> {
               enabled: enablingForm,
             ):new SizedBox(height: 0.0,),
             new ListTile(
+              title: Text("Downloads"),
+              trailing:Icon(Icons.cloud_download,color: Colors.black,),
+              onTap: ()=>Navigator.push(context, new MaterialPageRoute(
+                builder:(context)=>new DownloadsPanel()
+              )),
+            ),
+            new ListTile(
               title: Text("Contact Us"),
               onTap: ()=>Navigator.push(context, new MaterialPageRoute(
                 builder: (context)=>new OurTeam()
@@ -360,7 +378,7 @@ class _BackDropAppState extends State<BackDropApp> {
                   
                 ],
               ),
-              subtitle: Text("  A 404Shades Product"),
+              subtitle: Text("  A 4O4Shades Product"),
               
             )
           ],
